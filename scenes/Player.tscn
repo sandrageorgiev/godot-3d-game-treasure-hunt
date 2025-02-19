@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb2477hssq43p"]
+
+[ext_resource type="PackedScene" uid="uid://d1ehvut7j7pdb" path="res://resources/judy_hopps_v3.glb" id="1_diduk"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_hn5d6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vc6hu"]
+size = Vector3(0.128937, 0.17627, 0.081665)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_hn5d6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-13, 0, -1.1365e-06, 0, 13, 0, 1.1365e-06, 0, -13, 0.132796, 1.19139, -0.0540941)
+shape = SubResource("BoxShape3D_vc6hu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="MeshInstance3D" instance=ExtResource("1_diduk")]
+transform = Transform3D(-13, 0, -1.1365e-06, 0, 13, 0, 1.1365e-06, 0, -13, 0, 0, 0)

@@ -1,0 +1,219 @@
+[gd_scene load_steps=22 format=3 uid="uid://f56tkhwakbu1"]
+
+[ext_resource type="Script" path="res://scripts/GameLevel.gd" id="1_lf13w"]
+[ext_resource type="Texture2D" uid="uid://djldceicnlk3s" path="res://addons/tiny_treats_pretty_park_set/Assets/Textures/tiny_treats_grass_texture.png" id="1_qln6a"]
+[ext_resource type="PackedScene" uid="uid://bb2477hssq43p" path="res://scenes/Player.tscn" id="6_0yket"]
+[ext_resource type="Script" path="res://addons/ninetailsrabbit.terrainy/src/terrainy.gd" id="7_eowll"]
+[ext_resource type="Script" path="res://scripts/AutoPlaces.gd" id="8_l5yqc"]
+[ext_resource type="Script" path="res://scenes/counter.gd" id="9_le2p0"]
+[ext_resource type="PackedScene" uid="uid://b2pk6230c8pu5" path="res://scenes/coin.tscn" id="10_iyrsb"]
+[ext_resource type="PackedScene" uid="uid://c2uwqgse1spdx" path="res://addons/tiny_treats_pretty_park_set/Assets/gltf/cobble_stones.gltf" id="12_k56rm"]
+[ext_resource type="PackedScene" uid="uid://bujg3lxj0cg06" path="res://addons/tiny_treats_pretty_park_set/Assets/gltf/tree.gltf" id="13_nwh4u"]
+[ext_resource type="PackedScene" uid="uid://brxrsl4s1gxm" path="res://addons/tiny_treats_pretty_park_set/Assets/gltf/flower_A.gltf" id="14_3y77k"]
+[ext_resource type="PackedScene" uid="uid://dbcwskmgxqruw" path="res://addons/tiny_treats_pretty_park_set/Assets/gltf/bench.gltf" id="15_v55mc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3n3qq"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ney4"]
+albedo_texture = ExtResource("1_qln6a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecq7a"]
+albedo_texture = ExtResource("1_qln6a")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0yn2x"]
+material = SubResource("StandardMaterial3D_ecq7a")
+size = Vector2(50, 50)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c43en"]
+
+[sub_resource type="Sky" id="Sky_oegfm"]
+sky_material = SubResource("PanoramaSkyMaterial_c43en")
+
+[sub_resource type="Environment" id="Environment_8otsm"]
+background_mode = 2
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_oegfm")
+sky_custom_fov = 45.0
+ambient_light_source = 3
+ambient_light_color = Color(0.389033, 0.578527, 0.99404, 1)
+ambient_light_energy = 3.61
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m0xhn"]
+sky_top_color = Color(0.293711, 0.43531, 0.743633, 1)
+sky_horizon_color = Color(0.855965, 0.583626, 0.407131, 1)
+
+[sub_resource type="Sky" id="Sky_y6bnc"]
+sky_material = SubResource("ProceduralSkyMaterial_m0xhn")
+
+[sub_resource type="Environment" id="Environment_3684q"]
+background_mode = 2
+sky = SubResource("Sky_y6bnc")
+ambient_light_source = 3
+ambient_light_color = Color(0, 0, 0.909804, 1)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_lf13w")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(0.999945, -0.00781844, 0.00697283, 0.00795208, 0.999781, -0.0193463, -0.00682002, 0.0194006, 0.999789, 0, 0, 0)
+shape = SubResource("BoxShape3D_3n3qq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(0.999986, -0.00399432, 0.00352829, 0.00402888, 0.999943, -0.00984915, -0.00348878, 0.00986322, 0.999945, 0.466208, -0.0500367, -4.0451)
+material_override = SubResource("StandardMaterial3D_2ney4")
+mesh = SubResource("PlaneMesh_0yn2x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.91189, 0.390829, -0.125338, -0.176278, 0.648719, 0.740331, 0.370652, -0.653006, 0.660455, 0, 0, 0)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="cobble_stones7" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17755, -0.0331208, -0.0609102)
+visible = false
+
+[node name="cobble_stones4" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9811, -0.0449229, -2.38419e-07)
+visible = false
+
+[node name="cobble_stones2" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.924242, -0.0658268, 0.300365)
+visible = false
+
+[node name="cobble_stones9" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141419, -0.0426085, 0)
+visible = false
+
+[node name="tree2" parent="Environment" instance=ExtResource("13_nwh4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.729, 2.02215, -1.30041)
+visible = false
+
+[node name="cobble_stones3" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07665, -0.0395209, -0.0529279)
+visible = false
+
+[node name="cobble_stones10" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 2.24513e-05, 0.000464186, -2.23462e-05, 1, -0.00015116, -0.000464191, 0.000151144, 1, -3.24298, -0.0340685, -2.15427)
+visible = false
+
+[node name="cobble_stones6" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96694, -0.0440561, 0.165343)
+visible = false
+
+[node name="cobble_stones8" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 1.12169e-05, 0.000232094, -1.11819e-05, 1, -7.55787e-05, -0.000232095, 7.55735e-05, 1, -3.3028, -0.0170542, -0.0393132)
+visible = false
+
+[node name="flower_A2" parent="Environment" instance=ExtResource("14_3y77k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0496998, 1.16317)
+visible = false
+
+[node name="cobble_stones5" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.105, -0.001, -2.09)
+visible = false
+
+[node name="cobble_stones11" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.887046, -0.001, -1.99045)
+visible = false
+
+[node name="bench2" parent="Environment" instance=ExtResource("15_v55mc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2703, 0, -3.19973)
+visible = false
+
+[node name="cobble_stones12" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.162766, -0.001, -1.76007)
+visible = false
+
+[node name="cobble_stones13" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1624, -0.001, -1.46328)
+visible = false
+
+[node name="cobble_stones14" parent="Environment" instance=ExtResource("12_k56rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14861, -0.001, -1.64933)
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8otsm")
+
+[node name="Player" parent="." instance=ExtResource("6_0yket")]
+transform = Transform3D(0.987721, 0, 0.156228, 0, 1, 0, -0.156228, 0, 0.987721, -3.398, -0.052, -0.925)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.999962, 0.00872654, 0, -0.00872654, 0.999962, 0, 3, 0)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="Player/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -10)
+environment = SubResource("Environment_3684q")
+current = true
+
+[node name="Terrainy" type="Node" parent="."]
+script = ExtResource("7_eowll")
+
+[node name="AutoPlacedObjects" type="Node3D" parent="."]
+script = ExtResource("8_l5yqc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 156.0
+offset_bottom = 48.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Counter" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("9_le2p0")
+
+[node name="Timer" type="Timer" parent="Control/Counter"]
+
+[node name="TimerLabel" type="Label" parent="Control/Counter"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = ","
+horizontal_alignment = 1
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="coinHoldeer" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5764, 0, -18.0608)
+
+[node name="coin" parent="Coins/coinHoldeer" instance=ExtResource("10_iyrsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88685, 0.591321, 3.79281)
+
+[node name="coinHoldeer2" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7804, 0, 11.3163)
+
+[node name="coin" parent="Coins/coinHoldeer2" instance=ExtResource("10_iyrsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88685, 0.591321, 3.79281)
+
+[node name="coinHoldeer3" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2085, -0.199881, 0)
+
+[node name="coin" parent="Coins/coinHoldeer3" instance=ExtResource("10_iyrsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.83319, 0.771607, 2.22635)
+
+[node name="coinHoldeer5" type="Node3D" parent="Coins"]
+
+[node name="coin" parent="Coins/coinHoldeer5" instance=ExtResource("10_iyrsb")]
+transform = Transform3D(0.108624, 0, 0.994083, 0, 1, 0, -0.994083, 0, 0.108624, -5.354, 0.855, -9.347)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Control/Counter/Timer" to="Control/Counter" method="_on_timer_timeout"]
